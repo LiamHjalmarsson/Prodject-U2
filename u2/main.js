@@ -105,10 +105,10 @@ function addPersonOnSubmit (event) {
 
     let person = createNewPeson(name, age, gender, crossfitExersice);
 
-    person.id = database[database.length - 1].id + 1; 
+    person.id = dataBase[dataBase.length - 1].id + 1; 
 
-    addNewPersonToDatabase(database. person);
-    rederPersons(database); 
+    addNewPersonToDatabase(dataBase, person);
+    rederPersons(dataBase); 
 
     let form = document.getElementById("add-person-to-form");
     form.reset();
