@@ -92,3 +92,33 @@ function getTheAverageAgeOfPeople (persons) {
     return averageSumOfYears / persons.length;
 }
 
+//////////////____________________ Ovan för fungerar som det ska______________ \\\\\\\\\\\\\
+
+function addPersonOnSubmit (event) {
+
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+    let gender = document.getElementById("gender").value;
+    let crossfitExersice = document.getElementById("crossfit-preferd").value;
+
+    let person = createNewPeson(name, age, gender, crossfitExersice);
+
+    person.id = database[database.length - 1].id + 1; 
+
+    addNewPersonToDatabase(database. person);
+    rederPersons(database); 
+
+    let form = document.getElementById("add-person-to-form");
+    form.reset();
+    
+}
+
+function setAddPerssonHandler () {
+    let form = document.getElementById("add-person-to-form");
+    form.addEventListener("submit", addPersonOnSubmit);
+}
+
+rederPersons(dataBase);
+setAddPerssonHandler();
