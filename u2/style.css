@@ -71,6 +71,12 @@ body > div > div > div > form > button {
     text-align: center;
 }
 
+.button-action-remove {
+    width: 120px;
+    height: 25px;
+    margin: 0px auto;
+}
+
 #persons {
     background: lightgray;
     padding: 10px;
