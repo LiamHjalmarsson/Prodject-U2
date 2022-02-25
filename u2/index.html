@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="container">
+
+        <div id="wrapper">
+
+            <h1>Crossfit Regestreation</h1>
+
+            <form id="add-person-to-form">
+                <input type="text" id="name" class="style-of-add-person" placeholder="Name:">
+                <input type="number" id="age" class="style-of-add-person person-age" placeholder="Age:">
+                <input type="text" id="gender" class="style-of-add-person" placeholder="Gender:">
+                <input type="text" id="crossfit-preferd" class="style-of-add-person person-exersice" placeholder="Preferd Exersice:">
+                <button>Add To Database</button>
+            </form>
+
+            <div id="color-header">
+
+            </div>
+
+            <div id="filters">
+                <form id="filter-by-age">
+                    <input type="number" id="filer-by-age" class="style-of-filter" placeholder="Age">
+                    <button>Filter</button>
+                </form>
+    
+                <form id="filter-by-gender">
+                    <input type="text" id="filer-by-gender" class="style-of-filter" placeholder="Gender">
+                    <button>Filter</button>
+                </form>
+     
+                <form id="filter-by-preferd">
+                    <input type="text" id="filer-by-preferd" class="style-of-filter" placeholder="Exersice"> 
+                    <button>Filter</button>
+                </form>
+    
+                <button id="show-all">Show All</button>
+            </div>  
+
+
+            <div id="headers">
+                <div>Name</div>
+                <div>Age</div>
+                <div>Gender</div>
+                <div>Preferd Exercise</div>
+            </div>
+        
+            <div id="Traning"></div>
+
+            
+        </div>
+
+    </div>
+    
+
+    <script src="database.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

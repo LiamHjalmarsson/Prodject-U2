@@ -1,0 +1,74 @@
+body {
+    margin: 0px;
+    background-color: #aaa;
+}
+
+#container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+#wrapper {
+    max-width: 900px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 40px;
+}
+
+#add-person-to-form {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.style-of-add-person {
+    height: 30px;
+}
+
+.person-age {
+    width: 120px;
+}
+
+.person-exersice {
+    width: 300px;
+}
+
+#color-header{
+    height: 100px;
+    background-color: darkslategrey;
+}
+
+#filters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 5px;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.style-of-filter {
+    height: 30px;
+}
+
+body > div > div > div > form > button {
+    height: 35px;  
+}
+
+#headers {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    border-bottom: 3px solid darkslategrey;
+    background: lightgray;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+#Traning {
+    background: lightgray;
+    padding: 10px;
+}
