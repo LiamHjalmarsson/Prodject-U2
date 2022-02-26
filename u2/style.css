@@ -1,5 +1,6 @@
 body {
     margin: 0px;
+   background-color: slategray;
 }
 
 #container {
@@ -37,8 +38,15 @@ h1 {
 }
 
 #color-header{
-    height: 100px;
-    background-color: darkslategrey;
+    height: 150px;
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #filters {
@@ -95,4 +103,14 @@ body > div > div > div > form > button {
   
 .person:nth-child(odd) {
     background: #e29d1d;
+}
+
+#info {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 3px solid darkslategrey;
+    background: lightgray;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
