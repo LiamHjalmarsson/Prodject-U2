@@ -30,7 +30,7 @@ let dataBase = [
 {
     id: 5,
     name: "Aude",
-    age: 30, 
+    age: 31, 
     gender: "female",
     crossfitExersice: "power clean", 
 },
