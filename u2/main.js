@@ -8,9 +8,9 @@ function createNewPeson (name, age, gender, crossfitExersice) {
         age: age, 
         gender: gender,
         crossfitExersice: crossfitExersice,
-    }
+    };
 
-    console.log(person)
+    console.log(person);
 
     return person;
 }
@@ -40,7 +40,7 @@ function renderPerson (person) {
 // Render an array of persons into html
 function rederPersons (persons) {
     let personsElement = document.getElementById("persons");
-    personsElement.innerHTML == "";
+    personsElement.innerHTML =   "";
 
     // Goes fro all the persons and insert their html
     for (let person of persons) { 
@@ -107,6 +107,7 @@ function addPersonOnSubmit (event) {
 
     person.id = dataBase[dataBase.length - 1].id + 1; 
 
+    // Global database 
     addNewPersonToDatabase(dataBase, person);
     rederPersons(dataBase); 
 
@@ -120,5 +121,7 @@ function setAddPerssonHandler () {
     form.addEventListener("submit", addPersonOnSubmit);
 }
 
+
+//direct kod 
 rederPersons(dataBase);
 setAddPerssonHandler();
