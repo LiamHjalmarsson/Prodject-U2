@@ -25,6 +25,7 @@ function addNewPersonToDatabase(database, person) {
     console.log(database);
 }
 
+
 // Render a persons object into a html Element;
 function renderPerson (person) {
     // Creating a div and applying class and that the div.id is eual to the person id.
@@ -33,7 +34,8 @@ function renderPerson (person) {
     div.id = person.id
 
     // with in the div we apply four divs with information about person and a remove button.
-    div.innerHTML = `<div>${person.name}</div>
+    div.innerHTML = `
+    <div>${person.name}</div>
     <div>${person.age}</div>
     <div>${person.gender}</div>
     <div>${person.crossfitExersice}</div>
@@ -102,6 +104,7 @@ function getPersonsByTheAge(persons, age) {
 
 //////////////____________________ code below works as it should______________ \\\\\\\\\\\\\
 
+
 function addPersonOnSubmit (event) {
 
     event.preventDefault();
@@ -116,8 +119,17 @@ function addPersonOnSubmit (event) {
 
     person.id = dataBase[dataBase.length - 1].id + 1; 
 
-    if(name == "" || age == "" || gender == "" || crossfitExersice == "") {
-        alert("You did not fill in everything")
+    if(name == "") {
+        alert("You did not fill in your name");
+    }
+    else if (age == "") {
+        alert("You did not fill in your age");
+    }
+    else if (gender == "") {
+        alert("You did not fille in your gender");
+    }
+    else if (crossfitExersice == "") {
+        alert("You did not fill in your exercies");
     }
     else 
     {
@@ -128,7 +140,6 @@ function addPersonOnSubmit (event) {
 
         let form = document.getElementById("add-person-to-form");
         form.reset();
-        
     }
 }
 
