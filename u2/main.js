@@ -3,14 +3,15 @@
 //////////////____________________ code below works as i should______________ \\\\\\\\\\\\\
 
 // fucntion creating a new person object and returns it 
-function createNewPeson (name, age, gender, crossfitExersice) {
+function createNewPeson (name, age, gender, crossfitExersicePreferd, crossfitExersiceWorst) {
    
     // person and diffrent objects 
     let person = {
         name: name, 
         age: age, 
         gender: gender,
-        crossfitExersice: crossfitExersice,
+        crossfitExersicePreferd: crossfitExersicePreferd,
+        crossfitExersiceWorst: crossfitExersiceWorst,
     };
 
     console.log(person);
@@ -38,12 +39,12 @@ function renderPerson (person) {
     <div>${person.name}</div>
     <div>${person.age}</div>
     <div>${person.gender}</div>
-    <div>${person.crossfitExersice}</div>
+    <div>${person.crossfitExersicePreferd}</div>
+    <div>${person.crossfitExersiceWorst}</div>
     <button type="button" class="button-action-remove"> Remove </button>`;
 
     return div;
 }
-
 
 // Render an array of persons into html
 function rederPersons (persons) {
@@ -57,11 +58,13 @@ function rederPersons (persons) {
         let personElement = renderPerson(person);
         personsElement.appendChild(personElement);
     }
+
+    setRemoveDogHandlers();
 }
 
 
-//////////////____________________ code below works as it should______________ \\\\\\\\\\\\\
 
+//////////////____________________ code below works as it should______________ \\\\\\\\\\\\\
 
 // Removes preson from database baste on the id 
 function removePersonFromDatabaseById (persons, id) {
@@ -102,8 +105,9 @@ function getPersonsByTheAge(persons, age) {
 //     return averageSumOfYears / persons.length;
 // }
 
-//////////////____________________ code below works as it should______________ \\\\\\\\\\\\\
 
+
+//////////////____________________ code below works as it should______________ \\\\\\\\\\\\\
 
 function addPersonOnSubmit (event) {
 
@@ -112,9 +116,10 @@ function addPersonOnSubmit (event) {
     let name = document.getElementById("name").value;
     let age = Number(document.getElementById("age").value);
     let gender = document.getElementById("gender").value;
-    let crossfitExersice = document.getElementById("crossfit-preferd").value;
+    let crossfitExersicePreferd = document.getElementById("crossfit-preferd").value;
+    let crossfitExersiceWorst = document.getElementById("crossfit-worst").value;
 
-    let person = createNewPeson(name, age, gender, crossfitExersice);
+    let person = createNewPeson(name, age, gender, crossfitExersicePreferd, crossfitExersiceWorst);
 
 
     person.id = dataBase[dataBase.length - 1].id + 1; 
@@ -128,8 +133,11 @@ function addPersonOnSubmit (event) {
     else if (gender == "") {
         alert("You did not fille in your gender");
     }
-    else if (crossfitExersice == "") {
+    else if (crossfitExersicePreferd == "") {
         alert("You did not fill in your exercies");
+    }
+    else if (crossfitExersiceWorst == "") {
+        alert("You did not fill in your worst exercies")
     }
     else 
     {
@@ -150,6 +158,28 @@ function setAddPerssonHandler () {
 
 //////////////____________________ Continue continue under on the exerciess needed______________ \\\\\\\\\\\\\
 
+
+
+//Delete function deletes but dosent change the average year
+
+// When a user clicks the remove-dog-button
+function onRemoveDeletePersonOnClick(event) {
+    let button = event.target;
+    let id = button.parentElement.id;
+    // Uses the global variable `database`
+    removePersonFromDatabaseById(dataBase, id);
+    // Re-render (without the newly deleted dog)
+    rederPersons(dataBase);
+}
+
+// Add "click" event handler to all remove-buttons
+function setRemoveDogHandlers() {
+    let buttons = document.querySelectorAll(".person button");
+
+    for (let button of buttons) {
+        button.addEventListener("click", onRemoveDeletePersonOnClick);
+    }
+}
 
 
 
@@ -174,6 +204,7 @@ function getTheAverageAgeOfPeople (persons) {
     return Math.round(averageSumOfYears / persons.length);
 }   
 
+
 function upUpdateAverage(){
     let averageAge = document.getElementById("addVAlue");
 
@@ -186,7 +217,7 @@ function upUpdateAverage(){
 
 
 //////////////____________________ Code under extra work______________ \\\\\\\\\\\\\
-let challenges = ["Murph", "Cindy", "Karen", "Hansen", "Bert", "Angie"];
+let challenges = ["Murph", "Cindy", "Karen", "Hansen", "Bert", "Angie", "Fran", "Clovis", "Nick", "Grace"];
 
 function chalangeChange(){
     let chanalngeDivBox = document.createElement("div")
