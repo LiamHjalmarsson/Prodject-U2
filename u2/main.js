@@ -1,6 +1,6 @@
 "use strict"; 
 
-//////////////____________________ Kod below works as i should______________ \\\\\\\\\\\\\
+//////////////____________________ code below works as i should______________ \\\\\\\\\\\\\
 
 // fucntion creating a new person object and returns it 
 function createNewPeson (name, age, gender, crossfitExersice) {
@@ -58,7 +58,7 @@ function rederPersons (persons) {
 }
 
 
-//////////////____________________ Kod below works as it should______________ \\\\\\\\\\\\\
+//////////////____________________ code below works as it should______________ \\\\\\\\\\\\\
 
 
 // Removes preson from database baste on the id 
@@ -89,25 +89,25 @@ function getPersonsByTheAge(persons, age) {
     return personsAge;
 }
 
-function getTheAverageAgeOfPeople (persons) {
+// function getTheAverageAgeOfPeople (persons) {
 
-    let averageSumOfYears = 0; 
+//     let averageSumOfYears = 0; 
 
-    for (let person of persons) {
-        averageSumOfYears = averageSumOfYears + person.age;
-    }
+//     for (let person of persons) {
+//         averageSumOfYears = averageSumOfYears + person.age;
+//     }
 
-    return averageSumOfYears / persons.length;
-}
+//     return averageSumOfYears / persons.length;
+// }
 
-//////////////____________________ Kod blow works as it should______________ \\\\\\\\\\\\\
+//////////////____________________ code below works as it should______________ \\\\\\\\\\\\\
 
 function addPersonOnSubmit (event) {
 
     event.preventDefault();
 
     let name = document.getElementById("name").value;
-    let age = document.getElementById("age").value;
+    let age = Number(document.getElementById("age").value);
     let gender = document.getElementById("gender").value;
     let crossfitExersice = document.getElementById("crossfit-preferd").value;
 
@@ -118,7 +118,8 @@ function addPersonOnSubmit (event) {
     // Global database   
     addNewPersonToDatabase(dataBase, person);
     rederPersons(dataBase);
- 
+    upUpdateAverage();
+
 
     let form = document.getElementById("add-person-to-form");
     form.reset();
@@ -130,22 +131,49 @@ function setAddPerssonHandler () {
     form.addEventListener("submit", addPersonOnSubmit);
 }
 
-//////////////____________________ Continue coind under______________ \\\\\\\\\\\\\
+//////////////____________________ Continue continue under on the exerciess needed______________ \\\\\\\\\\\\\
 
 
 
-//direct kod 
+
+
+//direct code 
 rederPersons(dataBase);
 setAddPerssonHandler();
+upUpdateAverage();
 
+
+
+//////////////____________________ code under countes the average on all people in database______________ \\\\\\\\\\\\\
+
+function getTheAverageAgeOfPeople (persons) {
+
+    let averageSumOfYears = 0; 
+
+    for (let person of persons) {
+        averageSumOfYears = averageSumOfYears + person.age;
+    }
+
+    return Math.round(averageSumOfYears / persons.length);
+}   
+
+function upUpdateAverage(){
+    let averageAge = document.getElementById("addVAlue");
+
+    averageAge.innerHTML = "";
+
+    for (let i = 0; i < dataBase.length; i++){
+        averageAge.innerHTML = getTheAverageAgeOfPeople(dataBase);
+    }
+}
 
 
 //////////////____________________ Code under extra work______________ \\\\\\\\\\\\\
-let challenges = ["Murph", "EMOM", "Cindy", "Karen", "Hansen", "Bert", "Angie"];
+let challenges = ["Murph", "Cindy", "Karen", "Hansen", "Bert", "Angie"];
 
 function chalangeChange(){
     let chanalngeDivBox = document.createElement("div")
-    chanalngeDivBox.innerHTML = "Press to get a random challang to do today!";
+    chanalngeDivBox.innerHTML = "Press to get a random challenge of the day!";
     chanalngeDivBox.style.fontSize = "30px"
     document.querySelector("#color-header").appendChild(chanalngeDivBox);
 
@@ -155,4 +183,5 @@ function chalangeChange(){
     });
 }
 
+// direct code
 chalangeChange();
