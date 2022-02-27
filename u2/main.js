@@ -113,17 +113,23 @@ function addPersonOnSubmit (event) {
 
     let person = createNewPeson(name, age, gender, crossfitExersice);
 
+
     person.id = dataBase[dataBase.length - 1].id + 1; 
 
-    // Global database   
-    addNewPersonToDatabase(dataBase, person);
-    rederPersons(dataBase);
-    upUpdateAverage();
+    if(name == "" || age == "" || gender == "" || crossfitExersice == "") {
+        alert("You did not fill in everything")
+    }
+    else 
+    {
+            // Global database   
+        addNewPersonToDatabase(dataBase, person);
+        rederPersons(dataBase);
+        upUpdateAverage();
 
-
-    let form = document.getElementById("add-person-to-form");
-    form.reset();
-    
+        let form = document.getElementById("add-person-to-form");
+        form.reset();
+        
+    }
 }
 
 function setAddPerssonHandler () {
