@@ -13,13 +13,16 @@
 
         <div id="wrapper">
 
-            <h1>Crossfit regristration</h1>
+            <h1>Crossfit regristration <br>
+                Submit your favorit exersise!
+            </h1>
 
             <form id="add-person-to-form">
                 <input type="text" id="name" class="style-of-add-person" placeholder="Name:">
                 <input type="number" id="age" class="style-of-add-person person-age" placeholder="Age:">
-                <input type="text" id="gender" class="style-of-add-person" placeholder="Gender:">
+                <input type="text" id="gender" class="style-of-add-person person-gender" placeholder="Gender:">
                 <input type="text" id="crossfit-preferd" class="style-of-add-person person-exersice" placeholder="Preferd Exersice:">
+                <input type="text" id="crossfit-worst" class="style-of-add-person person-exersice" placeholder="Worst Exersice:">
                 <button>Add To Database</button>
             </form>
 
@@ -39,7 +42,12 @@
                 </form>
      
                 <form id="filter-by-preferd">
-                    <input type="text" id="filer-by-preferd" class="style-of-filter" placeholder="Exersice"> 
+                    <input type="text" id="filer-by-preferd" class="style-of-filter" placeholder="Preferd"> 
+                    <button>Filter</button>
+                </form>
+
+                <form id="filter-by-worst">
+                    <input type="text" id="filer-by-worst" class="style-of-filter" placeholder="Worst"> 
                     <button>Filter</button>
                 </form>
     
@@ -51,7 +59,8 @@
                 <div>Name</div>
                 <div>Age</div>
                 <div>Gender</div>
-                <div>Preferd Exercise</div>
+                <div>Preferd</div>
+                <div>Worst</div>
                 <div class="button-action">Action</div>
             </div>
         
