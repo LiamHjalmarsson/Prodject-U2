@@ -178,9 +178,9 @@ function removePersonHandelere() {
 
 
 //direct code 
-rederPersons(dataBase);
-setAddPerssonHandler();
-upUpdateAverage();
+// rederPersons(dataBase);
+// setAddPerssonHandler();
+// upUpdateAverage();
 
 
 
@@ -225,6 +225,7 @@ function getPersonsByTheAge(persons, age) {
     return personsAge;
 }
 
+
 function getPeopleByGender (persons, gender) {
 
     let genderOfpeople = []; 
@@ -237,17 +238,32 @@ function getPeopleByGender (persons, gender) {
     return genderOfpeople;
 }
 
-function getPeopleByPreferd (persons, crossfitExersicePreferd) {
+
+function getPeopleByPreferd (persons, preferd) {
 
     let crossfitExersicePreferd = []; 
 
     for (let person of persons) {
-        if (person.crossfitExersicePreferd == crossfitExersicePreferd) {
-            crossfitExersicePreferd.pssuh(person);
+        if (person.crossfitExersicePreferd == preferd) {
+            crossfitExersicePreferd.push(person);
         }
     }
     return crossfitExersicePreferd;
 }
+
+
+function getPeopleByWorst (persons, worst) {
+
+    let crossfitExersiceWorst = [];
+
+    for (let person of persons) {
+        if (person.crossfitExersiceWorst == worst) {
+            crossfitExersiceWorst.push(person)
+        }
+    }
+    return crossfitExersiceWorst;
+}
+
 
 function filterPepoleByAge (event) {
     event.preventDefault(); 
@@ -259,40 +275,62 @@ function filterPepoleByAge (event) {
     rederPersons(people);
 }
 
-function filterPeopleByGender (event) {
+
+function filterPepoleByGender (event) {
     event.preventDefault();
 
     let genderOfpeople = document.getElementById("filer-gender").value;
 
-    let people = getPeopleByGender(dataBase, genderOfpeople); 
+    let people = getPeopleByGender(dataBase, genderOfpeople);
 
     rederPersons(people);
 }
 
+function filterPepoleByPreferd (event) {
+    event.preventDefault();
+
+    let preferdOfPeople = document.getElementById("filer-preferd").value;
+
+    let people = getPeopleByPreferd(dataBase, preferdOfPeople);
+
+    rederPersons(people);
+}
+
+
+function filterPepoleByWorst (event) {
+    event.preventDefault();
+
+    let worstOfPeople = document.getElementById("filer-worst").value;
+
+    let people = getPeopleByWorst(dataBase, worstOfPeople);
+
+    rederPersons(people);
+}
+
+
 function filterPepoleHandelers () {
     let ageForm = document.getElementById("filter-by-age");
     let genderForm = document.getElementById("filter-by-gender");
+    let preferdForm = document.getElementById("filter-by-preferd");
+    let worstForm = document.getElementById("filter-by-worst");
     let refreshSeeAll = document.getElementById("show-all");
 
 
     ageForm.addEventListener("submit", filterPepoleByAge);
-    genderForm.addEventListener("submit", filterPeopleByGender);
+    genderForm.addEventListener("submit", filterPepoleByGender);
+    preferdForm.addEventListener("submit", filterPepoleByPreferd);
+    worstForm.addEventListener("submit", filterPepoleByWorst);
     refreshSeeAll.addEventListener("click", ShowAllOnClick);
 }
-
-
-
-
-
-filterPepoleHandelers();
-
-
 
 ///////////////___________________Code under Show All_________________\\\\\\\\\\\\\
 
 function ShowAllOnClick() {
-    document.getElementById("filer-by-age").value = "";
-
+    document.getElementById("filer-age").value = "";
+    document.getElementById("filer-gender").value = "";
+    document.getElementById("filer-preferd").value = "";
+    document.getElementById("filer-worst").value = "";
+    
     rederPersons(dataBase);
 }
 
@@ -314,4 +352,8 @@ function chalangeChange(){
 }
 
 // direct code
+rederPersons(dataBase);
+setAddPerssonHandler();
+upUpdateAverage();
 chalangeChange();
+filterPepoleHandelers();
