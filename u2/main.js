@@ -222,6 +222,44 @@ function upUpdateAverage(){
 }
 
 
+//////////////____________________ Code Function oritanting pepole by age etc ______________ \\\\\\\\\\\\\
+
+function filterPepoleByAge (event) {
+    event.preventDefault(); 
+
+    let ageOfPeople = document.getElementById("filer-by-age").value;
+
+    let people = getPersonsByTheAge(dataBase, ageOfPeople);
+
+    rederPersons(people);
+}
+
+
+function filterPepoleHandelers () {
+    let ageForm = document.getElementById("filter-by-age");
+    let refreshSeeAll = document.getElementById("show-all");
+
+
+    ageForm.addEventListener("submit", filterPepoleByAge);
+    refreshSeeAll.addEventListener("click", ShowAllOnClick);
+}
+
+
+
+
+
+filterPepoleHandelers();
+
+
+
+///////////////___________________Code under Show All_________________\\\\\\\\\\\\\
+
+function ShowAllOnClick() {
+    document.getElementById("filer-by-age").value = "";
+
+    rederPersons(dataBase);
+}
+
 //////////////____________________ Code under extra work______________ \\\\\\\\\\\\\
 let challenges = ["Murph", "Cindy", "Karen", "Hansen", "Bert", "Angie", "Fran", "Clovis", "Nick", "Grace"];
 
