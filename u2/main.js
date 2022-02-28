@@ -80,19 +80,7 @@ function removePersonFromDatabaseById (persons, id) {
     }
 }
 
-function getPersonsByTheAge(persons, age) {
 
-    let personsAge = [];
-
-    for (let person of persons) {
-        if (person.age == age) {
-            personsAge.push(person);
-        }
-    }
-
-
-    return personsAge;
-}
 
 // function getTheAverageAgeOfPeople (persons) {
 
@@ -224,23 +212,71 @@ function upUpdateAverage(){
 
 //////////////____________________ Code Function oritanting pepole by age etc ______________ \\\\\\\\\\\\\
 
+function getPersonsByTheAge(persons, age) {
+
+    let personsAge = [];
+
+    for (let person of persons) {
+        if (person.age == age) {
+            personsAge.push(person);
+        }
+    }
+
+    return personsAge;
+}
+
+function getPeopleByGender (persons, gender) {
+
+    let genderOfpeople = []; 
+
+    for (let person of persons) {
+        if (person.gender == gender) {
+            genderOfpeople.push(person);
+        }
+    }
+    return genderOfpeople;
+}
+
+function getPeopleByPreferd (persons, crossfitExersicePreferd) {
+
+    let crossfitExersicePreferd = []; 
+
+    for (let person of persons) {
+        if (person.crossfitExersicePreferd == crossfitExersicePreferd) {
+            crossfitExersicePreferd.pssuh(person);
+        }
+    }
+    return crossfitExersicePreferd;
+}
+
 function filterPepoleByAge (event) {
     event.preventDefault(); 
 
-    let ageOfPeople = document.getElementById("filer-by-age").value;
+    let ageOfPeople = document.getElementById("filer-age").value;
 
     let people = getPersonsByTheAge(dataBase, ageOfPeople);
 
     rederPersons(people);
 }
 
+function filterPeopleByGender (event) {
+    event.preventDefault();
+
+    let genderOfpeople = document.getElementById("filer-gender").value;
+
+    let people = getPeopleByGender(dataBase, genderOfpeople); 
+
+    rederPersons(people);
+}
 
 function filterPepoleHandelers () {
     let ageForm = document.getElementById("filter-by-age");
+    let genderForm = document.getElementById("filter-by-gender");
     let refreshSeeAll = document.getElementById("show-all");
 
 
     ageForm.addEventListener("submit", filterPepoleByAge);
+    genderForm.addEventListener("submit", filterPeopleByGender);
     refreshSeeAll.addEventListener("click", ShowAllOnClick);
 }
 
