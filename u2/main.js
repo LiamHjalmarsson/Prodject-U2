@@ -59,7 +59,7 @@ function rederPersons (persons) {
         personsElement.appendChild(personElement);
     }
 
-    setRemoveDogHandlers();
+    removePersonHandelere();
 }
 
 
@@ -121,8 +121,12 @@ function addPersonOnSubmit (event) {
 
     let person = createNewPeson(name, age, gender, crossfitExersicePreferd, crossfitExersiceWorst);
 
-
+    if (dataBase.length = dataBase.length) {
     person.id = dataBase[dataBase.length - 1].id + 1; 
+    } 
+    else {
+    person.id = 1; 
+    }
 
     if(name == "") {
         alert("You did not fill in your name");
@@ -159,7 +163,6 @@ function setAddPerssonHandler () {
 //////////////____________________ Continue continue under on the exerciess needed______________ \\\\\\\\\\\\\
 
 
-
 //Delete function deletes but dosent change the average year
 
 // When a user clicks the remove-dog-button
@@ -170,10 +173,12 @@ function onRemoveDeletePersonOnClick(event) {
     removePersonFromDatabaseById(dataBase, id);
     // Re-render (without the newly deleted dog)
     rederPersons(dataBase);
+    upUpdateAverage();
+    
 }
 
 // Add "click" event handler to all remove-buttons
-function setRemoveDogHandlers() {
+function removePersonHandelere() {
     let buttons = document.querySelectorAll(".person button");
 
     for (let button of buttons) {
@@ -213,6 +218,7 @@ function upUpdateAverage(){
     for (let i = 0; i < dataBase.length; i++){
         averageAge.innerHTML = getTheAverageAgeOfPeople(dataBase);
     }
+    
 }
 
 
@@ -229,6 +235,8 @@ function chalangeChange(){
         let challange = Math.floor(Math.random()*(challenges.length));
         chanalngeDivBox.innerHTML = challenges[challange];
     });
+
+
 }
 
 // direct code
