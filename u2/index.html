@@ -19,7 +19,7 @@
 
             <form id="add-person-to-form">
                 <input type="text" id="name" class="style-of-add-person" placeholder="Name:">
-                <input type="number" id="age" class="style-of-add-person person-age" placeholder="Age:">
+                <input type="number" id="age" class="style-of-add-person person-age" placeholder="Age": min="0">
                 <input type="text" id="gender" class="style-of-add-person person-gender" placeholder="Gender:">
                 <input type="text" id="crossfit-preferd" class="style-of-add-person person-exersice" placeholder="Preferd Exersice:">
                 <input type="text" id="crossfit-worst" class="style-of-add-person person-exersice" placeholder="Worst Exersice:">
@@ -32,7 +32,7 @@
 
             <div id="filters">
                 <form id="filter-by-age">
-                    <input type="number" id="filer-age" class="style-of-filter" placeholder="Age">
+                    <input type="number" id="filer-age" class="style-of-filter" placeholder="Age" min="0">
                     <button>Filter</button>
                 </form>
     
@@ -42,12 +42,12 @@
                 </form>
      
                 <form id="filter-by-preferd">
-                    <input type="text" id="filer-preferd" class="style-of-filter" placeholder="Preferd"> 
+                    <input type="text" id="filer-preferd" class="style-of-filter" placeholder="Preferd Exersice"> 
                     <button>Filter</button>
                 </form>
 
                 <form id="filter-by-worst">
-                    <input type="text" id="filer-worst" class="style-of-filter" placeholder="Worst"> 
+                    <input type="text" id="filer-worst" class="style-of-filter" placeholder="Worst Exersice"> 
                     <button>Filter</button>
                 </form>
     
@@ -56,6 +56,7 @@
 
 
             <div id="headers">
+                <div id="conter">Table</div>
                 <div>Name</div>
                 <div>Age</div>
                 <div>Gender</div>

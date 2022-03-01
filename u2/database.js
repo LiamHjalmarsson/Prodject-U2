@@ -15,28 +15,4 @@ let dataBase = [
     crossfitExersicePreferd: "Hand stand push up", 
     crossfitExersiceWorst: "Burppes over bar",
 },
-{
-    id: 3,
-    name: "Henrik",
-    age: 26, 
-    gender: "Male",
-    crossfitExersicePreferd: "Snatch", 
-    crossfitExersiceWorst: "Pull Ups",
-},
-{
-    id: 4,
-    name: "Filip",
-    age: 26, 
-    gender: "Male",
-    crossfitExersicePreferd: "Burppe over bar", 
-    crossfitExersiceWorst: "Kettelbell Swing",
-},
-{
-    id: 5,
-    name: "Aude",
-    age: 31, 
-    gender: "Female",
-    crossfitExersicePreferd: "Power clean", 
-    crossfitExersiceWorst: "Snatch",
-},
 ]
