@@ -1,11 +1,11 @@
 let dataBase = [
     
-    {
+{
     id: 1,
     name: "Liam",
     age: 25, 
     gender: "Male",
-    crossfitExersicePreferd: "Toes to bar", 
+    crossfitExersicePreferd: "Hand stand push up", 
     crossfitExersiceWorst: "Box Jumps",
 },
 {

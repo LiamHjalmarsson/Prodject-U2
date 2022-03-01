@@ -41,7 +41,7 @@ function renderPerson (person) {
     
     // With in the div we apply four divs with information about person and a remove button.
     div.innerHTML = `
-    <div></div>
+    <li></li>
     <div>${person.name}</div>
     <div>${person.age}</div>
     <div>${person.gender}</div>
@@ -52,6 +52,8 @@ function renderPerson (person) {
     return div; 
 
 }
+
+
 
 
 // Render an array of persons into html
@@ -163,7 +165,9 @@ function onRemoveDeletePersonOnClick(event) {
     for (let i = 0; i < dataBase.length; i++) {
 
         if (dataBase[i].id == id) {
+
             doYouConfirm = confirm(`Do you want to delete the profile ${dataBase[i].name}`);
+        
         }
 
         if (doYouConfirm) {
@@ -264,6 +268,7 @@ function getPeopleByGender (persons, gender) {
     for (let person of persons) {
 
         if (person.gender.toLowerCase() == gender.toLowerCase()) {
+           
             genderOfpeople.push(person);
 
         }
@@ -327,8 +332,8 @@ function getPeopleByWorst (persons, worst) {
     for (let person of persons) {
        
         if (person.crossfitExersiceWorst.toLowerCase() == worst.toLowerCase()) {
+           
             crossfitExersiceWorst.push(person)
-
         
         }
     
