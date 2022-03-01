@@ -6,11 +6,13 @@ function createNewPeson (name, age, gender, crossfitExersicePreferd, crossfitExe
    
     // person and diffrent objects 
     let person = {
+
         name: name, 
         age: age, 
         gender: gender,
         crossfitExersicePreferd: crossfitExersicePreferd,
         crossfitExersiceWorst: crossfitExersiceWorst,
+
     };
 
     console.log(person);
@@ -37,9 +39,9 @@ function renderPerson (person) {
     div.classList.add("person");
     div.id = person.id;
     
-    // with in the div we apply four divs with information about person and a remove button.
+    // With in the div we apply four divs with information about person and a remove button.
     div.innerHTML = `
-    <div>${person.id}</div>
+    <div></div>
     <div>${person.name}</div>
     <div>${person.age}</div>
     <div>${person.gender}</div>
@@ -139,7 +141,7 @@ function removePersonFromDatabaseById (persons, id) {
             
         if (person.id == id) {
             
-            ersons.splice(i, 1);
+            persons.splice(i, 1);
 
             console.log(person)
             return;
@@ -155,18 +157,26 @@ function onRemoveDeletePersonOnClick(event) {
    
     let button = event.target;
     let id = button.parentElement.id;
+    let doYouConfirm;
 
-    let doYouConfirm = confirm(`Do you want to delete the profile`);
-
-    if (doYouConfirm) {
-
-        removePersonFromDatabaseById(dataBase, id);
-
-        rederPersons(dataBase);
-        upUpdateAverage();
     
+    for (let i = 0; i < dataBase.length; i++) {
+
+        if (dataBase[i].id == id) {
+            doYouConfirm = confirm(`Do you want to delete the profile ${dataBase[i].name}`);
+        }
+
+        if (doYouConfirm) {
+
+            removePersonFromDatabaseById(dataBase, id);
+            
+            rederPersons(dataBase);
+            upUpdateAverage();
+            
+        } 
+
     }
-    
+
 }
 
 
@@ -240,8 +250,8 @@ function filterPepoleByAge (event) {
     event.preventDefault(); 
     
     let ageOfPeople = document.getElementById("filer-age").value;
-
     let people = getPersonsByTheAge(dataBase, ageOfPeople);
+
     rederPersons(people);
 
 }
@@ -353,6 +363,7 @@ function filterPepoleHandelers () {
     genderForm.addEventListener("submit", filterPepoleByGender);
     preferdForm.addEventListener("submit", filterPepoleByPreferd);
     worstForm.addEventListener("submit", filterPepoleByWorst);
+
     refreshSeeAll.addEventListener("click", ShowAllOnClick);
 
 }
