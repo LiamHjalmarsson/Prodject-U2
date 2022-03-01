@@ -443,6 +443,12 @@ function getAverageWomen () {
             femaleCount++;
 
         }
+        else if (dataBase[i].gender == "female") {
+           
+            sum += dataBase[i].age;
+            femaleCount++;
+
+        }
     }
 
     return Math.round(sum / femaleCount);
@@ -478,6 +484,12 @@ function getAverageMan (data) {
             maleCount++;
 
         }
+        else if(dataBase[i].gender == "male") {
+
+            sumMan += dataBase[i].age;
+            maleCount++;
+
+        }
     }
 
     return Math.round(sumMan / maleCount);
@@ -494,7 +506,7 @@ function updateMenAge(){
     for (let i = 0; i < dataBase.length; i++){
 
         men.innerHTML = getAverageMan(dataBase);
-        
+
     } 
 }
 
