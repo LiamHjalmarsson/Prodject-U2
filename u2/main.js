@@ -1,6 +1,5 @@
 "use strict"; 
 
-//////////////____________________ code below works as i should______________ \\\\\\\\\\\\\
 // fucntion creating a new person object and returns it 
 function createNewPeson (name, age, gender, crossfitExersicePreferd, crossfitExersiceWorst) {
    
@@ -74,7 +73,6 @@ function rederPersons (persons) {
 }
 
 
-//////////////____________________ code below works as it should______________ \\\\\\\\\\\\\
 function addPersonOnSubmit (event) {
 
     event.preventDefault();
@@ -130,7 +128,6 @@ function setAddPerssonHandler () {
 }
 
 
-//////////////____________________ Continue continue under on the exerciess needed______________ \\\\\\\\\\\\\
 // Removes preson from database baste on the id 
 function removePersonFromDatabaseById (persons, id) {
 
@@ -180,6 +177,12 @@ function onRemoveDeletePersonOnClick(event) {
 
 }
 
+function removeId (event) {
+
+    let id = []; 
+
+}
+
 
 // Add "click" event handler to all remove-buttons
 function removePersonHandelere() {
@@ -194,39 +197,6 @@ function removePersonHandelere() {
 
 }
 
-
-//////////////____________________ code under countes the average on all people in database______________ \\\\\\\\\\\\\
-function getTheAverageAgeOfPeople (persons) {
-
-    let averageSumOfYears = 0; 
-
-    for (let person of persons) {
-
-        averageSumOfYears = averageSumOfYears + person.age;
-
-    }
-
-    return Math.round(averageSumOfYears / persons.length);
-
-}   
-
-
-function upUpdateAverage(){
-
-    let averageAge = document.getElementById("addVAlue");
-
-    averageAge.innerHTML = "";
-
-    for (let i = 0; i < dataBase.length; i++){
-
-        averageAge.innerHTML = getTheAverageAgeOfPeople(dataBase);
-
-    }
-    
-}
-
-
-//////////////____________________ Code Function oritanting pepole by age etc ______________ \\\\\\\\\\\\\
 function getPersonsByTheAge(persons, age) {
 
     let personsAge = [];
@@ -395,6 +365,36 @@ function ShowAllOnClick () {
 }
 
 //////////////____________________ Code under extra work______________ \\\\\\\\\\\\\
+function getTheAverageAgeOfPeople (persons) {
+
+    let averageSumOfYears = 0; 
+
+    for (let person of persons) {
+
+        averageSumOfYears = averageSumOfYears + person.age;
+
+    }
+
+    return Math.round(averageSumOfYears / persons.length);
+
+}   
+
+
+function upUpdateAverage(){
+
+    let averageAge = document.getElementById("addVAlue");
+
+    averageAge.innerHTML = "";
+
+    for (let i = 0; i < dataBase.length; i++){
+
+        averageAge.innerHTML = getTheAverageAgeOfPeople(dataBase);
+
+    }
+    
+}
+
+
 let challenges = ["Murph", "Cindy", "Karen", "Hansen", "Bert", "Angie", "Fran", "Clovis", "Nick", "Grace"];
 
 function chalangeChange(){
@@ -414,6 +414,34 @@ function chalangeChange(){
 
 }
 
+/////////////////////////////////////////////////////////////////////////////
+
+function getAverageWomen () {
+    let sum = 0;
+    
+    for (let i = 0; i < dataBase.length; i++) {
+        if (dataBase[i].gender == "Female") {
+            sum += dataBase[i].age;
+        }
+    }
+    return sum / dataBase.length;
+}
+
+console.log(getAverageWomen(dataBase));
+
+function getAverageMan (data) {
+    
+    let sumMan = 0;
+    
+    for (let man of data) {
+        if (man.gender == "Male") {
+            sumMan += man.age;
+        }
+    }
+    return sumMan / data.length;
+}
+
+console.log(getAverageMan(dataBase));
 
 // direct code
 rederPersons(dataBase);

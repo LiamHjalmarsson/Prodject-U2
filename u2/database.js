@@ -75,7 +75,7 @@ let dataBase = [
 {
     id: 10,
     name: "Andreas",
-    age: 40, 
+    age: 20, 
     gender: "Male",
     crossfitExersicePreferd: "Push Jerk", 
     crossfitExersiceWorst: "Wall Ball",

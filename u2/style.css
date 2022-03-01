@@ -94,10 +94,12 @@ body > div > div > div > form > button {
   }
 
 .button-action {
+    border-radius: 10px;
     text-align: center;
 }
 
 .button-action-remove {
+    border-radius: 10px;
     width: 120px;
     height: 25px;
     margin: 0px auto;
@@ -130,6 +132,7 @@ body > div > div > div > form > button {
 
 button:hover {
     border: 0px;
+    border-radius: 5px;
     color: white;
     background-color: rgb(1, 95, 64);
 }
@@ -141,5 +144,5 @@ button:hover {
     border-bottom: 3px solid darkslategrey;
     background: lightgray;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
