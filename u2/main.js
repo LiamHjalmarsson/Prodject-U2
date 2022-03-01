@@ -41,8 +41,7 @@ function renderPerson (person) {
     
     // With in the div we apply four divs with information about person and a remove button.
     div.innerHTML = `
-    <li></li>
-    <div>${person.name}</div>
+    <li>${person.name}</li>
     <div>${person.age}</div>
     <div>${person.gender}</div>
     <div>${person.crossfitExersicePreferd}</div>
@@ -52,8 +51,6 @@ function renderPerson (person) {
     return div; 
 
 }
-
-
 
 
 // Render an array of persons into html
@@ -257,6 +254,7 @@ function filterPepoleByAge (event) {
     let people = getPersonsByTheAge(dataBase, ageOfPeople);
 
     rederPersons(people);
+    resetFilters();
 
 }
 
@@ -289,6 +287,7 @@ function filterPepoleByGender (event) {
     let people = getPeopleByGender(dataBase, genderOfpeople);
 
     rederPersons(people);
+    resetFilters();
 
 }
 
@@ -321,6 +320,7 @@ function filterPepoleByPreferd (event) {
     let people = getPeopleByPreferd(dataBase, preferdOfPeople);
 
     rederPersons(people);
+    resetFilters();
 
 }
 
@@ -352,7 +352,8 @@ function filterPepoleByWorst (event) {
     
     let people = getPeopleByWorst(dataBase, worstOfPeople);
     rederPersons(people);
-
+    resetFilters();
+    
 }
 
 
@@ -374,7 +375,15 @@ function filterPepoleHandelers () {
 }
 
 
-function ShowAllOnClick() {
+function resetFilters () {
+    document.getElementById("filer-age").value = "";
+    document.getElementById("filer-gender").value = "";
+    document.getElementById("filer-preferd").value = "";
+    document.getElementById("filer-worst").value = "";
+}
+
+
+function ShowAllOnClick () {
 
     document.getElementById("filer-age").value = "";
     document.getElementById("filer-gender").value = "";
