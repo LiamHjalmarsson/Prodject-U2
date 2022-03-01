@@ -1,4 +1,5 @@
 let dataBase = [
+    
     {
     id: 1,
     name: "Liam",
@@ -15,4 +16,5 @@ let dataBase = [
     crossfitExersicePreferd: "Hand stand push up", 
     crossfitExersiceWorst: "Burppes over bar",
 },
+
 ]
