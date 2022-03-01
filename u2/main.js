@@ -73,6 +73,7 @@ function rederPersons (persons) {
 }
 
 
+
 function addPersonOnSubmit (event) {
 
     event.preventDefault();
@@ -111,13 +112,16 @@ function addPersonOnSubmit (event) {
         // Global database   
         addNewPersonToDatabase(dataBase, person);
         rederPersons(dataBase);
-        upUpdateAverage();
+        upUpdateAverage(); 
+        updateMenAge();
+        updateWomenAge();
 
         let form = document.getElementById("add-person-to-form");
         form.reset();
     }
 
 }
+
 
 
 function setAddPerssonHandler () {
@@ -149,6 +153,7 @@ function removePersonFromDatabaseById (persons, id) {
 }
 
 
+
 function onRemoveDeletePersonOnClick(event) {
    
     let button = event.target;
@@ -167,19 +172,14 @@ function onRemoveDeletePersonOnClick(event) {
         if (doYouConfirm) {
 
             removePersonFromDatabaseById(dataBase, id);
-            
             rederPersons(dataBase);
             upUpdateAverage();
+            updateMenAge();
+            updateWomenAge();
             
         } 
 
     }
-
-}
-
-function removeId (event) {
-
-    let id = []; 
 
 }
 
@@ -196,6 +196,8 @@ function removePersonHandelere() {
     }
 
 }
+
+
 
 function getPersonsByTheAge(persons, age) {
 
@@ -216,6 +218,7 @@ function getPersonsByTheAge(persons, age) {
 }
 
 
+
 function filterPepoleByAge (event) {
     
     event.preventDefault(); 
@@ -227,6 +230,7 @@ function filterPepoleByAge (event) {
     resetFilters();
 
 }
+
 
 
 function getPeopleByGender (persons, gender) {
@@ -248,6 +252,7 @@ function getPeopleByGender (persons, gender) {
 }
 
 
+
 function filterPepoleByGender (event) {
    
     event.preventDefault();
@@ -260,6 +265,7 @@ function filterPepoleByGender (event) {
     resetFilters();
 
 }
+
 
 
 function getPeopleByPreferd (persons, preferd) {
@@ -281,6 +287,7 @@ function getPeopleByPreferd (persons, preferd) {
 }
 
 
+
 function filterPepoleByPreferd (event) {
   
     event.preventDefault();
@@ -293,6 +300,7 @@ function filterPepoleByPreferd (event) {
     resetFilters();
 
 }
+
 
 
 function getPeopleByWorst (persons, worst) {
@@ -314,6 +322,7 @@ function getPeopleByWorst (persons, worst) {
 }
 
 
+
 function filterPepoleByWorst (event) {
     
     event.preventDefault();
@@ -325,6 +334,7 @@ function filterPepoleByWorst (event) {
     resetFilters();
     
 }
+
 
 
 function filterPepoleHandelers () {
@@ -345,12 +355,14 @@ function filterPepoleHandelers () {
 }
 
 
+
 function resetFilters () {
     document.getElementById("filer-age").value = "";
     document.getElementById("filer-gender").value = "";
     document.getElementById("filer-preferd").value = "";
     document.getElementById("filer-worst").value = "";
 }
+
 
 
 function ShowAllOnClick () {
@@ -363,6 +375,7 @@ function ShowAllOnClick () {
     rederPersons(dataBase);
 
 }
+
 
 //////////////____________________ Code under extra work______________ \\\\\\\\\\\\\
 function getTheAverageAgeOfPeople (persons) {
@@ -380,6 +393,7 @@ function getTheAverageAgeOfPeople (persons) {
 }   
 
 
+
 function upUpdateAverage(){
 
     let averageAge = document.getElementById("addVAlue");
@@ -395,7 +409,9 @@ function upUpdateAverage(){
 }
 
 
+
 let challenges = ["Murph", "Cindy", "Karen", "Hansen", "Bert", "Angie", "Fran", "Clovis", "Nick", "Grace"];
+
 
 function chalangeChange(){
     
@@ -415,37 +431,82 @@ function chalangeChange(){
 }
 
 /////////////////////////////////////////////////////////////////////////////
-
 function getAverageWomen () {
     let sum = 0;
+    let femaleCount = 0;
     
     for (let i = 0; i < dataBase.length; i++) {
+        
         if (dataBase[i].gender == "Female") {
+           
             sum += dataBase[i].age;
+            femaleCount++;
+
         }
     }
-    return sum / dataBase.length;
+
+    return Math.round(sum / femaleCount);
 }
 
-console.log(getAverageWomen(dataBase));
+
+
+function updateWomenAge(){
+
+    let women = document.getElementById("addWomen");
+
+    women.innerHTML = "";
+
+    for (let i = 0; i < dataBase.length; i++){
+
+        women.innerHTML = getAverageWomen(dataBase);
+
+    }
+}
+
+
 
 function getAverageMan (data) {
     
     let sumMan = 0;
-    
-    for (let man of data) {
-        if (man.gender == "Male") {
-            sumMan += man.age;
+    let maleCount = 0;
+
+    for ( let i = 0; i < dataBase.length; i++) {
+
+        if(dataBase[i].gender == "Male") {
+
+            sumMan += dataBase[i].age;
+            maleCount++;
+
         }
     }
-    return sumMan / data.length;
+
+    return Math.round(sumMan / maleCount);
 }
 
-console.log(getAverageMan(dataBase));
+
+
+function updateMenAge(){
+
+    let men = document.getElementById("addMan");
+
+    men.innerHTML = "";
+
+    for (let i = 0; i < dataBase.length; i++){
+
+        men.innerHTML = getAverageMan(dataBase);
+        
+    } 
+}
+
 
 // direct code
 rederPersons(dataBase);
 setAddPerssonHandler();
+filterPepoleHandelers();
+
+// direct new 
 upUpdateAverage();
 chalangeChange();
-filterPepoleHandelers();
+updateMenAge();
+updateWomenAge();
+
