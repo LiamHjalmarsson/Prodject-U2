@@ -11,7 +11,7 @@ body {
 }
 
 #wrapper {
-    max-width: 1100px;
+    width: 1100px;
 }
 
 #header {
@@ -44,8 +44,6 @@ h1{
 .person-age, .person-gender{
     width: 80px;
 }
-
-
 
 .person-exersice {
     width: 300px;
@@ -105,6 +103,13 @@ body > div > div > div > form > button {
     margin: 0px auto;
 }
 
+button:hover {
+    border: 0px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(1, 95, 64);
+}
+
 #persons {
     background: lightgray;
     padding: 10px;
@@ -130,12 +135,6 @@ body > div > div > div > form > button {
     color: lightgray; 
 }
 
-button:hover {
-    border: 0px;
-    border-radius: 5px;
-    color: white;
-    background-color: rgb(1, 95, 64);
-}
 
 #info {
     font-size: 20px;
@@ -145,4 +144,38 @@ button:hover {
     background: lightgray;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width:1100px) {
+    #wrapper {
+        max-width: 800px;
+    }
+
+    #add-person-to-form {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+
+    }
+
+    .person-age {
+        width: 300px;
+    }
+
+    .person-gender{
+        width: 155px;
+    }
+
+    #filters {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .style-of-filter {
+        width: 180px;
+    }
+
+    .styling-the-buttons {
+        width: 60px;
+    }
+
 }

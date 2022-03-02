@@ -37,7 +37,8 @@ function renderPerson (person) {
     let div = document.createElement("div");
     div.classList.add("person");
     div.id = person.id;
-    
+    let counter = 0;
+
     // With in the div we apply four divs with information about person and a remove button.
     div.innerHTML = `
     <li>${person.name}</li>
@@ -430,7 +431,7 @@ function chalangeChange(){
 
 }
 
-/////////////////////////////////////////////////////////////////////////////
+
 function getAverageWomen () {
     let sum = 0;
     let femaleCount = 0;
@@ -511,6 +512,7 @@ function updateMenAge(){
 }
 
 
+
 // direct code
 rederPersons(dataBase);
 setAddPerssonHandler();
@@ -521,4 +523,3 @@ upUpdateAverage();
 chalangeChange();
 updateMenAge();
 updateWomenAge();
-
