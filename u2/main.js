@@ -28,11 +28,11 @@ function renderPerson (person) {
     let div = document.createElement("div");
     div.classList.add("person");
     div.id = person.id;
-    let counter = 0;
 
     // With in the div we apply four divs with information about person and a remove button.
     div.innerHTML = `
-    <li>${person.name}</li>
+    <div>${person.id}</div>
+    <div>${person.name}</div>
     <div>${person.age}</div>
     <div>${person.gender}</div>
     <div>${person.crossfitExersicePreferd}</div>
@@ -109,9 +109,11 @@ function addPersonOnSubmit (event) {
 
 
 function setAddPerssonHandler () {
+
     let form = document.getElementById("add-person-to-form");
     form.addEventListener("submit", addPersonOnSubmit);
 }
+
 
 // Removes preson from database baste on the id 
 function removePersonFromDatabaseById (persons, id) {
@@ -120,12 +122,24 @@ function removePersonFromDatabaseById (persons, id) {
         
         let person = persons[i];
             
-        if (person.id == id) {  
-            persons.splice(i, 1);
-            console.log(person)
+        if (person.id == id) { 
+            
+            let confirming = confirm(`Do you want to delete the profile ${dataBase[i].name} ${dataBase[i].age}`);
+            confirming;
+
+            if (confirming == true) {
+                persons.splice(i, 1);
+                console.log(person)
+
+                for (let j = i; j < persons.length; j++) {
+                    persons[j].id = persons[j].id - 1;
+                }
+            }
+
             return;
         }
     }
+
 }
 
 
@@ -133,22 +147,28 @@ function onRemoveDeletePersonOnClick(event) {
    
     let button = event.target;
     let id = button.parentElement.id;
-    let doYouConfirm;
+    // let doYouConfirm;
 
-    for (let i = 0; i < dataBase.length; i++) {
+    // for (let i = 0; i < dataBase.length; i++) {
 
-        if (dataBase[i].id == id) {
-            doYouConfirm = confirm(`Do you want to delete the profile ${dataBase[i].name} ${dataBase[i].age}`);
-        }
+    //     if (dataBase[i].id == id) {
+    //         doYouConfirm = confirm(`Do you want to delete the profile ${dataBase[i].name} ${dataBase[i].age}`);
+    //     }
 
-        if (doYouConfirm) {
-            removePersonFromDatabaseById(dataBase, id);
-            rederPersons(dataBase);
-            upUpdateAverage();
-            updateMenAge();
-            updateWomenAge();
-        } 
-    }
+    //     if (doYouConfirm) {
+    //         removePersonFromDatabaseById(dataBase, id);
+    //         rederPersons(dataBase);
+    //         upUpdateAverage();
+    //         updateMenAge();
+    //         updateWomenAge();
+    //     } 
+    // }
+
+    removePersonFromDatabaseById(dataBase, id);
+    rederPersons(dataBase);
+    upUpdateAverage();
+    updateMenAge();
+    updateWomenAge();
 }
 
 // Add "click" event handler to all remove-buttons
@@ -170,8 +190,12 @@ function getPersonsByTheAge(persons, age) {
 
         if (person.age == age) {
             personsAge.push(person);
+           
+            for (let i = 0; i < personsAge.length; i++) {
+                if (person.name == person)
+                personsAge[i].id = i + 1;
+            }
         }
-
     }
 
     return personsAge;
@@ -200,7 +224,13 @@ function getPeopleByGender (persons, gender) {
             genderOfpeople.push(person);
         }
 
+        for (let i = 0; i < genderOfpeople.length; i++) {
+            if (person.name == person)
+            genderOfpeople[i].id = i + 1;
+        }
     }
+
+
 
     return genderOfpeople;
 }
@@ -227,6 +257,11 @@ function getPeopleByPreferd (persons, preferd) {
        
         if (person.crossfitExersicePreferd.toLowerCase() == preferd.toLowerCase()) {
             crossfitExersicePreferd.push(person);
+        }
+
+        for (let i = 0; i < crossfitExersicePreferd.length; i++) {
+            if (person.name == person)
+            crossfitExersicePreferd[i].id = i + 1;
         }
 
     }
@@ -258,6 +293,10 @@ function getPeopleByWorst (persons, worst) {
             crossfitExersiceWorst.push(person)
         }
 
+        for (let i = 0; i < crossfitExersiceWorst.length; i++) {
+            if (person.name == person)
+            crossfitExersiceWorst[i].id = i + 1;
+        }
     }
 
     return crossfitExersiceWorst;
@@ -314,6 +353,24 @@ function ShowAllOnClick () {
 
 
 //////////////____________________ Code under extra work______________ \\\\\\\\\\\\\
+let challenges = ["Murph", "Cindy", "Karen", "Hansen", "Bert", "Angie", "Fran", "Clovis", "Nick", "Grace"];
+
+
+function chalangeChange(){
+    
+    let chanalngeDivBox = document.createElement("div");
+    let banner = document.querySelector("#color-header");
+    chanalngeDivBox.innerHTML = "Press to get a random challenge of the day!";
+    chanalngeDivBox.style.fontSize = "30px"
+    banner.appendChild(chanalngeDivBox);
+
+    banner.addEventListener("click", function(){
+        let challange = Math.floor(Math.random()*(challenges.length));
+        chanalngeDivBox.innerHTML = challenges[challange];
+    });
+}
+
+
 function getTheAverageAgeOfPeople (persons) {
 
     let averageSumOfYears = 0; 
@@ -335,24 +392,6 @@ function upUpdateAverage(){
     for (let i = 0; i < dataBase.length; i++){
         averageAge.innerHTML = getTheAverageAgeOfPeople(dataBase);
     }
-}
-
-
-let challenges = ["Murph", "Cindy", "Karen", "Hansen", "Bert", "Angie", "Fran", "Clovis", "Nick", "Grace"];
-
-
-function chalangeChange(){
-    
-    let chanalngeDivBox = document.createElement("div");
-    let banner = document.querySelector("#color-header");
-    chanalngeDivBox.innerHTML = "Press to get a random challenge of the day!";
-    chanalngeDivBox.style.fontSize = "30px"
-    banner.appendChild(chanalngeDivBox);
-
-    banner.addEventListener("click", function(){
-        let challange = Math.floor(Math.random()*(challenges.length));
-        chanalngeDivBox.innerHTML = challenges[challange];
-    });
 }
 
 

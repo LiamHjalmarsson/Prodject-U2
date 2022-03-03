@@ -128,7 +128,7 @@ h1{
     justify-content: center;
     align-items: center;
     gap: 20px;
-    grid-template-columns:repeat(6, 1fr);
+    grid-template-columns:repeat(7, 1fr);
   }
 
 .button-action {
@@ -166,7 +166,7 @@ h1{
     justify-content: center;
     align-items: center;
     gap: 20px;
-    grid-template-columns:repeat(6, 1fr);
+    grid-template-columns:repeat(7, 1fr);
   }
   
 .person div {
