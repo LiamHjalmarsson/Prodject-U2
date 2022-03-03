@@ -30,14 +30,14 @@ let dataBase = [
     age: 21, 
     gender: "Female",
     crossfitExersicePreferd: "Snatch", 
-    crossfitExersiceWorst: "Dead lift",
+    crossfitExersiceWorst: "Kettelbell Swing",
 },
 {
     id: 5,
     name: "Filip",
     age: 26, 
     gender: "Male",
-    crossfitExersicePreferd: "Push Jerk", 
+    crossfitExersicePreferd: "Snatch", 
     crossfitExersiceWorst: "Toes to bar",
 },
 {
@@ -53,8 +53,8 @@ let dataBase = [
     name: "Aude",
     age: 31, 
     gender: "Female",
-    crossfitExersicePreferd: "Dead lift", 
-    crossfitExersiceWorst: "Boxjump",
+    crossfitExersicePreferd: "Snatch", 
+    crossfitExersiceWorst: "Wall Ball",
 },
 {
     id: 8,

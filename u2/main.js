@@ -2,7 +2,6 @@
 
 // fucntion creating a new person object and returns it 
 function createNewPeson (name, age, gender, crossfitExersicePreferd, crossfitExersiceWorst) {  
-    // person and diffrent objects 
     let person = {
         name: name, 
         age: age, 
@@ -17,7 +16,6 @@ function createNewPeson (name, age, gender, crossfitExersicePreferd, crossfitExe
 
 // Add the newly create person to database
 function addNewPersonToDatabase(database, person) {
-    //person gets pushed to the database
     database.push(person);
     console.log(database);
 }
@@ -29,7 +27,6 @@ function renderPerson (person) {
     div.classList.add("person");
     div.id = person.id;
 
-    // With in the div we apply four divs with information about person and a remove button.
     div.innerHTML = `
     <div>${person.id}</div>
     <div>${person.name}</div>
@@ -44,8 +41,6 @@ function renderPerson (person) {
 
 // Render an array of persons into html
 function rederPersons (persons) {
-    
-    // varibal gets assingd to get element by id. 
     let personsElement = document.getElementById("persons");
     // every time the function is called it does not add the person list again. 
     personsElement.innerHTML = "";
@@ -56,12 +51,13 @@ function rederPersons (persons) {
         personsElement.appendChild(personElement);
     }
     
+    //adding removePerson
     removePersonHandelere();
 }
 
-
+// When form is filed and sumbmited add 
 function addPersonOnSubmit (event) {
-
+    // Prevent them form from sending us to a new page
     event.preventDefault();
 
     let name = document.getElementById("name").value;
@@ -72,13 +68,16 @@ function addPersonOnSubmit (event) {
 
     let person = createNewPeson(name, age, gender, crossfitExersicePreferd, crossfitExersiceWorst);
 
+    // Calculate the new id created to databse to eual + 1 
     if (dataBase.length = dataBase.length) {
         person.id = dataBase[dataBase.length - 1].id + 1; 
     } 
+    //if no one is adde then add new to be id 1 
     else {
         person.id = 1; 
     }
 
+    //alert if something is not filed 
     if(name == "") {
         alert("You did not fill in your name");
     }
@@ -107,30 +106,30 @@ function addPersonOnSubmit (event) {
     }
 }
 
-
+// Add clickEvent to add button
 function setAddPerssonHandler () {
-
     let form = document.getElementById("add-person-to-form");
     form.addEventListener("submit", addPersonOnSubmit);
 }
 
-
 // Removes preson from database baste on the id 
 function removePersonFromDatabaseById (persons, id) {
-
+    // loop from array to find right person with right id to be deleted 
     for (let i = 0; i < persons.length; i++) {
-        
+       
         let person = persons[i];
             
+        // if persons id = the id then comfirm with name age pops
         if (person.id == id) { 
             
             let confirming = confirm(`Do you want to delete the profile ${dataBase[i].name} ${dataBase[i].age}`);
-            confirming;
 
+            // if comfirigng is true then remove 
             if (confirming == true) {
                 persons.splice(i, 1);
                 console.log(person)
 
+                // removes the id by one 
                 for (let j = i; j < persons.length; j++) {
                     persons[j].id = persons[j].id - 1;
                 }
@@ -139,31 +138,14 @@ function removePersonFromDatabaseById (persons, id) {
             return;
         }
     }
-
 }
 
-
-function onRemoveDeletePersonOnClick(event) {
-   
+// when Clicks event to remove person
+function onRemoveDeletePersonOnClick(event) { 
     let button = event.target;
     let id = button.parentElement.id;
-    // let doYouConfirm;
 
-    // for (let i = 0; i < dataBase.length; i++) {
-
-    //     if (dataBase[i].id == id) {
-    //         doYouConfirm = confirm(`Do you want to delete the profile ${dataBase[i].name} ${dataBase[i].age}`);
-    //     }
-
-    //     if (doYouConfirm) {
-    //         removePersonFromDatabaseById(dataBase, id);
-    //         rederPersons(dataBase);
-    //         upUpdateAverage();
-    //         updateMenAge();
-    //         updateWomenAge();
-    //     } 
-    // }
-
+    // global varibalse and updating form list and ages count
     removePersonFromDatabaseById(dataBase, id);
     rederPersons(dataBase);
     upUpdateAverage();
@@ -172,8 +154,7 @@ function onRemoveDeletePersonOnClick(event) {
 }
 
 // Add "click" event handler to all remove-buttons
-function removePersonHandelere() {
-    
+function removePersonHandelere() {  
     let buttons = document.querySelectorAll(".person button");
 
     for (let button of buttons) {
@@ -181,13 +162,12 @@ function removePersonHandelere() {
     }
 }
 
-
+// Returns the pepole based on age 
 function getPersonsByTheAge(persons, age) {
-
     let personsAge = [];
 
     for (let person of persons) {
-
+        // if personage age = age make loop to rearage number count
         if (person.age == age) {
             personsAge.push(person);
            
@@ -201,25 +181,26 @@ function getPersonsByTheAge(persons, age) {
     return personsAge;
 }
 
-
+// filter by age 
 function filterPepoleByAge (event) {
-    
     event.preventDefault(); 
-    
+    // the age put
     let ageOfPeople = document.getElementById("filer-age").value;
+    // get the pepole on age
     let people = getPersonsByTheAge(dataBase, ageOfPeople);
 
+    //re-render list and reset filter search
     rederPersons(people);
     resetFilters();
 }
 
-
+// returns the pepole based on gender
 function getPeopleByGender (persons, gender) {
-
     let genderOfpeople = []; 
 
     for (let person of persons) {
-
+        // if personage gender = gneder make loop to rearage number count
+        // make text lowercase
         if (person.gender.toLowerCase() == gender.toLowerCase()) {
             genderOfpeople.push(person);
         }
@@ -230,27 +211,24 @@ function getPeopleByGender (persons, gender) {
         }
     }
 
-
-
     return genderOfpeople;
 }
 
-
+//filter by gender 
 function filterPepoleByGender (event) {
-   
     event.preventDefault();
-
+    //the gender put
     let genderOfpeople = document.getElementById("filer-gender").value;
-
+    // get the pepole on gender
     let people = getPeopleByGender(dataBase, genderOfpeople);
 
+    //re-render list and reset filter search
     rederPersons(people);
     resetFilters();
 }
 
-
+// returns the pepole based on preferd exersice
 function getPeopleByPreferd (persons, preferd) {
-
     let crossfitExersicePreferd = []; 
 
     for (let person of persons) {
@@ -263,15 +241,13 @@ function getPeopleByPreferd (persons, preferd) {
             if (person.name == person)
             crossfitExersicePreferd[i].id = i + 1;
         }
-
     }
 
     return crossfitExersicePreferd;
 }
 
-
-function filterPepoleByPreferd (event) {
-  
+// filter by preferdExercies
+function filterPepoleByPreferd (event) { 
     event.preventDefault();
 
     let preferdOfPeople = document.getElementById("filer-preferd").value;
@@ -282,9 +258,8 @@ function filterPepoleByPreferd (event) {
     resetFilters();
 }
 
-
+// returns the pepole based on preferd worst
 function getPeopleByWorst (persons, worst) {
-
     let crossfitExersiceWorst = [];
 
     for (let person of persons) {
@@ -292,7 +267,7 @@ function getPeopleByWorst (persons, worst) {
         if (person.crossfitExersiceWorst.toLowerCase() == worst.toLowerCase()) {
             crossfitExersiceWorst.push(person)
         }
-
+        
         for (let i = 0; i < crossfitExersiceWorst.length; i++) {
             if (person.name == person)
             crossfitExersiceWorst[i].id = i + 1;
@@ -302,9 +277,8 @@ function getPeopleByWorst (persons, worst) {
     return crossfitExersiceWorst;
 }
 
-
-function filterPepoleByWorst (event) {
-    
+// filter by worst exercies
+function filterPepoleByWorst (event) {   
     event.preventDefault();
 
     let worstOfPeople = document.getElementById("filer-worst").value;
@@ -314,9 +288,8 @@ function filterPepoleByWorst (event) {
     resetFilters();
 }
 
-
-function filterPepoleHandelers () {
-    
+// submit filterform 
+function filterPepoleHandelers () {   
     let ageForm = document.getElementById("filter-by-age");
     let genderForm = document.getElementById("filter-by-gender");
     let preferdForm = document.getElementById("filter-by-preferd");
@@ -328,21 +301,20 @@ function filterPepoleHandelers () {
     preferdForm.addEventListener("submit", filterPepoleByPreferd);
     worstForm.addEventListener("submit", filterPepoleByWorst);
 
+    // shows all 
     refreshSeeAll.addEventListener("click", ShowAllOnClick);
 }
 
-
+// reset filter value after search
 function resetFilters () {
-
     document.getElementById("filer-age").value = "";
     document.getElementById("filer-gender").value = "";
     document.getElementById("filer-preferd").value = "";
     document.getElementById("filer-worst").value = "";
 }
 
-
+// show all on click and reset value
 function ShowAllOnClick () {
-
     document.getElementById("filer-age").value = "";
     document.getElementById("filer-gender").value = "";
     document.getElementById("filer-preferd").value = "";
@@ -352,12 +324,11 @@ function ShowAllOnClick () {
 }
 
 
-//////////////____________________ Code under extra work______________ \\\\\\\\\\\\\
+///////////////////////////____________________ Code under extra work______________ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 let challenges = ["Murph", "Cindy", "Karen", "Hansen", "Bert", "Angie", "Fran", "Clovis", "Nick", "Grace"];
 
-
+// random challanges 
 function chalangeChange(){
-    
     let chanalngeDivBox = document.createElement("div");
     let banner = document.querySelector("#color-header");
     chanalngeDivBox.innerHTML = "Press to get a random challenge of the day!";
@@ -370,9 +341,8 @@ function chalangeChange(){
     });
 }
 
-
+// returns average age of all 
 function getTheAverageAgeOfPeople (persons) {
-
     let averageSumOfYears = 0; 
 
     for (let person of persons) {
@@ -382,11 +352,9 @@ function getTheAverageAgeOfPeople (persons) {
     return Math.round(averageSumOfYears / persons.length);
 }   
 
-
+// get average of all pepole
 function upUpdateAverage(){
-
     let averageAge = document.getElementById("addVAlue");
-
     averageAge.innerHTML = "";
 
     for (let i = 0; i < dataBase.length; i++){
@@ -394,9 +362,8 @@ function upUpdateAverage(){
     }
 }
 
-
+// returns average age of all women with f and F
 function getAverageWomen () {
-   
     let sum = 0;
     let femaleCount = 0;
     
@@ -410,17 +377,14 @@ function getAverageWomen () {
             sum += dataBase[i].age;
             femaleCount++;
         }
-
     }
 
     return Math.round(sum / femaleCount);
 }
 
-
+// get the agerave women age
 function updateWomenAge(){
-
     let women = document.getElementById("addWomen");
-
     women.innerHTML = "";
 
     for (let i = 0; i < dataBase.length; i++){
@@ -428,9 +392,8 @@ function updateWomenAge(){
     }
 }
 
-
-function getAverageMan (data) {
-    
+// returns average age of all men with m and M
+function getAverageMan (data) {  
     let sumMan = 0;
     let maleCount = 0;
 
@@ -444,38 +407,28 @@ function getAverageMan (data) {
             sumMan += dataBase[i].age;
             maleCount++;
         }
-
     }
 
     return Math.round(sumMan / maleCount);
 }
 
-
+// get the agerave men age
 function updateMenAge(){
-
     let men = document.getElementById("addMan");
-
     men.innerHTML = "";
 
     for (let i = 0; i < dataBase.length; i++){
         men.innerHTML = getAverageMan(dataBase);
     } 
-
 }
-
 
 // direct code
 rederPersons(dataBase);
 setAddPerssonHandler();
 filterPepoleHandelers();
-
-// direct new 
 upUpdateAverage();
 chalangeChange();
 updateMenAge();
 updateWomenAge();
 
-
-
-////////////////////////////////////////////// extra NAV
 
