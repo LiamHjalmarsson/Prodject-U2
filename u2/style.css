@@ -70,10 +70,6 @@ a:hover {
     border-radius: 10px;
 }
 
-h1{
-    
-}
-
 #add-person-to-form {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -128,7 +124,7 @@ h1{
     justify-content: center;
     align-items: center;
     gap: 20px;
-    grid-template-columns:repeat(7, 1fr);
+    grid-template-columns: 80px repeat(6, 1fr);
   }
 
 .button-action {
@@ -166,7 +162,7 @@ h1{
     justify-content: center;
     align-items: center;
     gap: 20px;
-    grid-template-columns:repeat(7, 1fr);
+    grid-template-columns:80px repeat(6, 1fr);
   }
   
 .person div {
