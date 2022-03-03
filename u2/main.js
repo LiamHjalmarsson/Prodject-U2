@@ -166,7 +166,7 @@ function onRemoveDeletePersonOnClick(event) {
 
         if (dataBase[i].id == id) {
 
-            doYouConfirm = confirm(`Do you want to delete the profile ${dataBase[i].name}`);
+            doYouConfirm = confirm(`Do you want to delete the profile ${dataBase[i].name} ${dataBase[i].age}`);
         
         }
 
@@ -450,6 +450,7 @@ function getAverageWomen () {
             femaleCount++;
 
         }
+        
     }
 
     return Math.round(sum / femaleCount);
@@ -523,3 +524,8 @@ upUpdateAverage();
 chalangeChange();
 updateMenAge();
 updateWomenAge();
+
+
+
+////////////////////////////////////////////// extra NAV
+
