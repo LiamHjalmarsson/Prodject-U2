@@ -2,6 +2,7 @@
 
 // fucntion creating a new person object and returns it 
 function createNewPeson (name, age, gender, crossfitExersicePreferd, crossfitExersiceWorst) {  
+    // person object 
     let person = {
         name: name, 
         age: age, 
@@ -20,11 +21,11 @@ function addNewPersonToDatabase(database, person) {
 
 // Render a persons object into a html Element;
 function renderPerson (person) {
+    // creating div adding its "innehåll"
     let div = document.createElement("div");
     div.classList.add("person");
     div.id = person.id;
-    
-    // <div>${person.id}</div>
+
     div.innerHTML = `
     <li>${person.name}</li>
     <div>${person.age}</div>
@@ -32,11 +33,11 @@ function renderPerson (person) {
     <div>${person.crossfitExersicePreferd}</div>
     <div>${person.crossfitExersiceWorst}</div>
     <button type="button" class="button-action-remove"> Remove </button>`;
-
+        
     return div; 
 }
 
-// Render an array of persons into html
+// Render array of persons into html
 function rederPersons (persons) {   
     let personsElement = document.getElementById("persons");
     // every time the function is called it does not add the person list again. 
@@ -48,20 +49,23 @@ function rederPersons (persons) {
         personsElement.appendChild(personElement);
     }
     
+    // acces to delete button
     removePersonHandelere();
 }
 
 // When form is filed and sumbmited add 
 function addPersonOnSubmit (event) {
-    // When form is filed and sumbmited add 
+    // prevent send to new page
     event.preventDefault();
 
+    // getting value from inputs
     let name = document.getElementById("name").value;
     let age = Number(document.getElementById("age").value);
     let gender = document.getElementById("gender").value;
     let crossfitExersicePreferd = document.getElementById("crossfit-preferd").value;
     let crossfitExersiceWorst = document.getElementById("crossfit-worst").value; 
 
+    // assing the function to a varibale 
     let person = createNewPeson(name, age, gender, crossfitExersicePreferd, crossfitExersiceWorst);
 
     // Calculate the new id created to databse to eual + 1 
@@ -113,20 +117,23 @@ function removePersonFromDatabaseById (persons, id) {
 
     for (let i = 0; i < persons.length; i++) {
         
+         // the persons for our loop 
         let person = persons[i];
             
-        // if persons id = the id then comfirm with name age pops
+        // see person id is the same 
         if (person.id == id) { 
             
+            // if same get a confirm to delte or cancel 
             let confirming = confirm(`Do you want to delete the profile ${person.name} ${person.age}`);
 
-            // if comfirigng is true then remove 
+            // if comfirigng is true / confirm then remove
             if (confirming == true) {
                 persons.splice(i, 1);
                 // change id number to go down 
                 for (let j = i; j < persons.length; j++) {
                     persons[j].id = persons[j].id - 1;
                 }
+                // if canceling stay on page 
                 rederPersons(dataBase);
                 upUpdateAverage();
                 updateMenAge();
@@ -159,15 +166,13 @@ function getPersonsByTheAge(persons, age) {
 
     let personsAge = [];
 
+    // for each person get age 
     for (let person of persons) {
 
+        // if the age is equal to age push persons from databse
         if (person.age == age) {
             personsAge.push(person);
         }
-
-        // for (let i = 0; i < personsAge.length; i++) {
-        //     personsAge[i].id = i + 1; 
-        // }
     }
 
     return personsAge;
@@ -179,12 +184,9 @@ function getPeopleByGender (persons, gender) {
 
     for (let person of persons) {
 
+        // get persosn if small or big letters
         if (person.gender.toLowerCase() == gender.toLowerCase()) {
             genderOfpeople.push(person);
-
-            // for (let i = 0; i < genderOfpeople.length; i++) {
-            //     genderOfpeople[i].id = i + 1; 
-            // }
         }
     }
 
@@ -199,10 +201,6 @@ function getPeopleByPreferd (persons, preferd) {
        
         if (person.crossfitExersicePreferd.toLowerCase() == preferd.toLowerCase()) {
             crossfitExersicePreferd.push(person);
-
-            // for (let i = 0; i < crossfitExersicePreferd.length; i++) {
-            //     crossfitExersicePreferd[i].id = i + 1; 
-            // }
         }
 
     }
@@ -218,10 +216,6 @@ function getPeopleByWorst (persons, worst) {
 
         if (person.crossfitExersiceWorst.toLowerCase() == worst.toLowerCase()) {
             crossfitExersiceWorst.push(person);
-        
-            // for (let i = 0; i < crossfitExersiceWorst.length; i++) {
-            //     crossfitExersiceWorst[i].id = i + 1; 
-            // }
         }
     }
 
