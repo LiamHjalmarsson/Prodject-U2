@@ -1,4 +1,5 @@
 "use strict"; 
+// https://github.com/LiamHjalmarsson?tab=repositories
 
 // fucntion creating a new person object and returns it 
 function createNewPeson (name, age, gender, crossfitExersicePreferd, crossfitExersiceWorst) {  
