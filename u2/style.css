@@ -124,7 +124,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    grid-template-columns: 80px repeat(6, 1fr);
+    grid-template-columns:repeat(6, 1fr);
   }
 
 .button-action {
@@ -162,7 +162,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    grid-template-columns:80px repeat(6, 1fr);
+    grid-template-columns:repeat(6, 1fr);
   }
   
 .person div {
