@@ -127,7 +127,10 @@ function removePersonFromDatabaseById (persons, id) {
                 for (let j = i; j < persons.length; j++) {
                     persons[j].id = persons[j].id - 1;
                 }
-                
+                rederPersons(dataBase);
+                upUpdateAverage();
+                updateMenAge();
+                updateWomenAge();
             }
             return;
         }
@@ -140,10 +143,6 @@ function onRemoveDeletePersonOnClick(event) {
     let id = button.parentElement.id;
 
     removePersonFromDatabaseById(dataBase, id);
-    rederPersons(dataBase);
-    upUpdateAverage();
-    updateMenAge();
-    updateWomenAge();
 }
 
 // Add "click" event handler to all remove-buttons
@@ -174,20 +173,6 @@ function getPersonsByTheAge(persons, age) {
     return personsAge;
 }
 
-// filter by age 
-function filterPepoleByAge (event) {
-    event.preventDefault(); 
-    
-    // the age put
-    let ageOfPeople = document.getElementById("filer-age").value;
-    // get the pepole on age
-    let people = getPersonsByTheAge(dataBase, ageOfPeople);
-    
-    //re-render list and reset filter search
-    rederPersons(people);
-    resetFilters();
-}
-
 // returns the pepole based on gender
 function getPeopleByGender (persons, gender) {
     let genderOfpeople = []; 
@@ -204,17 +189,6 @@ function getPeopleByGender (persons, gender) {
     }
 
     return genderOfpeople;
-}
-
-//filter by gender 
-function filterPepoleByGender (event) {
-    event.preventDefault();
-
-    let genderOfpeople = document.getElementById("filer-gender").value;
-    let people = getPeopleByGender(dataBase, genderOfpeople);
-
-    rederPersons(people);
-    resetFilters();
 }
 
 // returns the pepole based on preferd exersice
@@ -236,18 +210,6 @@ function getPeopleByPreferd (persons, preferd) {
     return crossfitExersicePreferd;
 }
 
-// filter by preferdExercies
-function filterPepoleByPreferd (event) {
-    event.preventDefault();
-
-    let preferdOfPeople = document.getElementById("filer-preferd").value;
-
-    let people = getPeopleByPreferd(dataBase, preferdOfPeople);
-
-    rederPersons(people);
-    resetFilters();
-}
-
 // returns the pepole based on preferd worst
 function getPeopleByWorst (persons, worst) {
     let crossfitExersiceWorst = [];
@@ -264,6 +226,43 @@ function getPeopleByWorst (persons, worst) {
     }
 
     return crossfitExersiceWorst;
+}
+
+// filter by age 
+function filterPepoleByAge (event) {
+    event.preventDefault(); 
+    
+    // the age put
+    let ageOfPeople = document.getElementById("filer-age").value;
+    // get the pepole on age
+    let people = getPersonsByTheAge(dataBase, ageOfPeople);
+    
+    //re-render list and reset filter search
+    rederPersons(people);
+    resetFilters();
+}
+
+//filter by gender 
+function filterPepoleByGender (event) {
+    event.preventDefault();
+
+    let genderOfpeople = document.getElementById("filer-gender").value;
+    let people = getPeopleByGender(dataBase, genderOfpeople);
+
+    rederPersons(people);
+    resetFilters();
+}
+
+// filter by preferdExercies
+function filterPepoleByPreferd (event) {
+    event.preventDefault();
+
+    let preferdOfPeople = document.getElementById("filer-preferd").value;
+
+    let people = getPeopleByPreferd(dataBase, preferdOfPeople);
+
+    rederPersons(people);
+    resetFilters();
 }
 
 // filter by worst exercies
@@ -311,7 +310,6 @@ function ShowAllOnClick () {
     rederPersons(dataBase);
 }
 
-
 ///////////////////////////____________________ Code under extra work______________ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 let challenges = ["Murph", "Cindy", "Karen", "Hansen", "Bert", "Angie", "Fran", "Clovis", "Nick", "Grace"];
 
@@ -340,15 +338,24 @@ function getTheAverageAgeOfPeople (persons) {
     return Math.round(averageSumOfYears / persons.length);
 }   
 
-// get average of all pepole
-function upUpdateAverage(){
-    let averageAge = document.getElementById("addVAlue");
+// returns average age of all men with m and M
+function getAverageMan (data) {
+    let sumMan = 0;
+    let maleCount = 0;
 
-    averageAge.innerHTML = "";
+    for ( let i = 0; i < dataBase.length; i++) {
 
-    for (let i = 0; i < dataBase.length; i++){
-        averageAge.innerHTML = getTheAverageAgeOfPeople(dataBase);
+        if(dataBase[i].gender == "Male") {
+            sumMan += dataBase[i].age;
+            maleCount++;
+        }
+        else if(dataBase[i].gender == "male") {
+            sumMan += dataBase[i].age;
+            maleCount++;
+        }
+
     }
+    return Math.round(sumMan / maleCount);
 }
 
 // returns average age of all women with f and F
@@ -371,6 +378,17 @@ function getAverageWomen () {
     return Math.round(sum / femaleCount);
 }
 
+// get average of all pepole
+function upUpdateAverage(){
+    let averageAge = document.getElementById("addVAlue");
+
+    averageAge.innerHTML = "";
+
+    for (let i = 0; i < dataBase.length; i++){
+        averageAge.innerHTML = getTheAverageAgeOfPeople(dataBase);
+    }
+}
+
 // get the agerave women age
 function updateWomenAge(){
     let women = document.getElementById("addWomen");
@@ -380,26 +398,6 @@ function updateWomenAge(){
     for (let i = 0; i < dataBase.length; i++){
         women.innerHTML = getAverageWomen(dataBase);
     }
-}
-
-// returns average age of all men with m and M
-function getAverageMan (data) {
-    let sumMan = 0;
-    let maleCount = 0;
-
-    for ( let i = 0; i < dataBase.length; i++) {
-
-        if(dataBase[i].gender == "Male") {
-            sumMan += dataBase[i].age;
-            maleCount++;
-        }
-        else if(dataBase[i].gender == "male") {
-            sumMan += dataBase[i].age;
-            maleCount++;
-        }
-
-    }
-    return Math.round(sumMan / maleCount);
 }
 
 // get the agerave men age
@@ -412,7 +410,6 @@ function updateMenAge(){
         men.innerHTML = getAverageMan(dataBase);
     } 
 }
-
 
 // direct code
 rederPersons(dataBase);
